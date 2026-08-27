@@ -211,10 +211,10 @@
     </p>
 
     <div class="ctas">
-      <a class="btn btn-primary" href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">
+      <a class="btn btn-primary" data-pixel="hero_telegram" href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">
         Message on Telegram →
       </a>
-      <a class="btn btn-secondary" href="https://www.linkedin.com/company/tradersguild" target="_blank" rel="noopener">
+      <a class="btn btn-secondary" data-pixel="hero_linkedin" href="https://www.linkedin.com/company/tradersguild" target="_blank" rel="noopener">
         Connect on LinkedIn →
       </a>
     </div>
@@ -251,7 +251,7 @@
       <h2>Message me now.</h2>
       <p>Tell me who you need to reach and why. I'll take it from there.</p>
       <div class="ctas">
-        <a class="btn btn-cream" href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">
+        <a class="btn btn-cream" data-pixel="closer_telegram" href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">
           Message on Telegram →
         </a>
       </div>
@@ -265,12 +265,29 @@
         <div class="foot-name">Traders Guild Nexus</div>
       </div>
       <nav class="foot-nav">
-        <a href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">Telegram</a>
-        <a href="https://www.linkedin.com/company/tradersguild" target="_blank" rel="noopener">LinkedIn</a>
+        <a data-pixel="footer_telegram" href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">Telegram</a>
+        <a data-pixel="footer_linkedin" href="https://www.linkedin.com/company/tradersguild" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://tradersguild.global" target="_blank" rel="noopener">tradersguild.global</a>
       </nav>
       <div class="foot-copy">© 2026 Traders Guild</div>
     </div>
   </footer>
+
+  <script>
+    // Funnel instrumentation — a 1x1 beacon against the agent gateway's
+    // /v1/pixel route (see lib/funnel.js). No cookies, no third-party
+    // scripts: just page_view on load and cta_click on each outbound button,
+    // tagged by data-pixel so /api/funnel can see which CTA actually converts.
+    (function () {
+      var API = "https://guildintelligence-production.up.railway.app";
+      function beacon(e, src) {
+        try { new Image().src = API + "/v1/pixel?e=" + encodeURIComponent(e) + "&src=" + encodeURIComponent(src || ""); } catch (err) {}
+      }
+      beacon("page_view", location.pathname);
+      document.querySelectorAll("[data-pixel]").forEach(function (el) {
+        el.addEventListener("click", function () { beacon("cta_click", el.getAttribute("data-pixel")); });
+      });
+    })();
+  </script>
 </body>
 </html>
