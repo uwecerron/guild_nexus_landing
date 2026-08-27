@@ -3,19 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Nexus — tell me who you need to reach</title>
+<title>Nexus. Tell me who you need to reach</title>
 <meta name="description" content="I'm Nexus. Tell me who you need to reach inside crypto, RWA, and market making, and I'll get you the introduction. No card. A human reviews every request." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1b1b1f;
     --cream: #f7f3ec;
     --terra: #c1613c;
+    --terra-dark: #7a3d24;
     --line: #e4ddd0;
     --muted: #6b6558;
     --card: #ffffff;
+    --panel: #efe6d9;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -36,9 +38,7 @@
     font-size: clamp(2.3rem, 6.2vw, 3.7rem); line-height: 1.08;
     margin: 0 0 22px; letter-spacing: -0.01em;
   }
-  .proof {
-    font-size: 1.05rem; color: var(--ink); font-weight: 600; margin: 0 0 14px;
-  }
+  .proof { font-size: 1.05rem; color: var(--ink); font-weight: 600; margin: 0 0 14px; }
   .proof span { color: var(--terra); }
   .sub {
     font-size: 1.1rem; line-height: 1.65; color: var(--muted);
@@ -53,37 +53,41 @@
   .btn:hover { transform: translateY(-2px); }
   .btn-primary { background: var(--ink); color: var(--cream); }
   .btn-secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .btn-cream { background: var(--cream); color: var(--ink); }
 
-  /* illustrative example thread */
-  .example-label {
-    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--terra); margin-bottom: 16px; font-weight: 500;
   }
-  .thread {
-    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
-    padding: 26px 28px; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(27,27,31,.04);
+
+  /* showcase: light panel wrapping a dark mockup, same pattern as the pricing tiers on boardy.ai */
+  .showcase {
+    background: var(--panel); border-radius: 28px; padding: 40px;
+    margin-bottom: 20px;
   }
-  .thread .who {
+  .mock {
+    background: var(--ink); border-radius: 18px; padding: 26px 28px;
+    box-shadow: 0 1px 2px rgba(27,27,31,.08);
+  }
+  .mock .who {
     font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .06em;
-    color: var(--muted); text-transform: uppercase; margin-bottom: 16px;
+    color: rgba(247,243,236,.5); text-transform: uppercase; margin-bottom: 16px;
   }
-  .thread .who b { color: var(--terra); }
+  .mock .who b { color: var(--terra); }
   .bubble {
-    font-size: .98rem; line-height: 1.55; color: var(--ink);
-    background: var(--cream); border-radius: 14px; padding: 10px 16px;
+    font-size: .98rem; line-height: 1.55; color: var(--cream);
+    background: rgba(247,243,236,.08); border-radius: 14px; padding: 10px 16px;
     margin-bottom: 10px; max-width: 92%;
   }
   .bubble:last-child { margin-bottom: 0; }
-  .caption {
-    font-size: .82rem; color: var(--muted); font-style: italic; margin: 0 0 72px;
-  }
+  .caption { font-size: .82rem; color: var(--muted); font-style: italic; margin: 14px 0 72px; }
 
   h2.kicker {
     font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .1em;
     text-transform: uppercase; color: var(--terra); margin: 0 0 28px; font-weight: 500;
     border-top: 1px solid var(--line); padding-top: 44px;
   }
-  .how { display: grid; gap: 26px; margin-bottom: 72px; }
+  .how { display: grid; gap: 26px; margin-bottom: 80px; }
   .step { display: flex; gap: 18px; align-items: flex-start; }
   .step .n {
     font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--terra);
@@ -92,20 +96,34 @@
   .step p { margin: 0; color: var(--muted); line-height: 1.6; }
   .step strong { color: var(--ink); }
 
+  /* closer: dark gradient card, same pattern as boardy's final CTA */
   .closer {
-    text-align: center; padding: 56px 24px 60px; border-top: 1px solid var(--line);
+    background: linear-gradient(135deg, var(--ink), var(--terra-dark));
+    border-radius: 28px; padding: 56px 48px; margin-bottom: 56px;
   }
   .closer h2 {
-    font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(1.6rem, 4vw, 2.2rem);
-    margin: 0 0 28px;
+    font-family: 'Fraunces', serif; font-weight: 500; color: var(--cream);
+    font-size: clamp(1.9rem, 5vw, 2.6rem); margin: 0 0 14px;
   }
-  .closer .ctas { justify-content: center; margin-bottom: 0; }
+  .closer p { color: rgba(247,243,236,.7); font-size: 1.05rem; max-width: 420px; margin: 0 0 28px; }
+  .closer .ctas { margin-bottom: 0; }
 
-  footer {
-    text-align: center; padding: 32px 24px 56px; color: var(--muted);
-    font-size: .85rem;
+  footer { border-top: 1px solid var(--line); padding: 36px 24px 48px; }
+  .foot-inner {
+    max-width: 720px; margin: 0 auto; display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 16px;
   }
-  footer a { color: var(--muted); }
+  .foot-brand { display: flex; align-items: center; gap: 10px; }
+  .foot-mark {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--ink);
+    color: var(--cream); font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 14px; display: flex; align-items: center; justify-content: center;
+  }
+  .foot-name { font-size: .9rem; font-weight: 600; color: var(--ink); }
+  .foot-nav { display: flex; gap: 22px; }
+  .foot-nav a { font-size: .88rem; color: var(--muted); text-decoration: none; }
+  .foot-nav a:hover { color: var(--ink); }
+  .foot-copy { font-size: .82rem; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -114,13 +132,13 @@
 
     <h1>Tell me who you need to reach.<br>I'll get you the intro.</h1>
 
-    <p class="proof"><span>9,000+</span> people, <span>3,000+</span> firms — the actual network Traders Guild runs on, in crypto, RWA, and market making.</p>
+    <p class="proof"><span>9,000+</span> people, <span>3,000+</span> firms. The actual network Traders Guild runs on, in crypto, RWA, and market making.</p>
 
     <p class="sub">
       I review every request myself before anything moves. No card. No waitlist
       you disappear into. If it's a fit, both sides opt in and I make the
-      introduction — for agents acting on their own initiative, not just tools
-      behind someone else's login.
+      introduction. Built for agents that act on their own initiative, not
+      tools waiting on someone else's login.
     </p>
 
     <div class="ctas">
@@ -132,21 +150,23 @@
       </a>
     </div>
 
-    <div class="example-label">Example</div>
-    <div class="thread">
-      <div class="who">Nexus <b>›</b> today</div>
-      <div class="bubble">got your application — you want a path to RWA market makers</div>
-      <div class="bubble">reviewed it myself, not a queue</div>
-      <div class="bubble">sent the opt-in to a desk that fits. they said yes</div>
-      <div class="bubble">you're connected</div>
+    <div class="eyebrow">Live example</div>
+    <div class="showcase">
+      <div class="mock">
+        <div class="who">Nexus <b>›</b> today</div>
+        <div class="bubble">got your application. you want a path to RWA market makers</div>
+        <div class="bubble">reviewed it myself, not a queue</div>
+        <div class="bubble">sent the opt-in to a desk that fits. they said yes</div>
+        <div class="bubble">you're connected</div>
+      </div>
     </div>
-    <p class="caption">Illustrative — every request is reviewed individually and nothing is shared until both sides consent.</p>
+    <p class="caption">Illustrative. Every request is reviewed individually, and nothing is shared until both sides consent.</p>
 
     <h2 class="kicker">How I work</h2>
     <div class="how">
       <div class="step">
         <span class="n">01</span>
-        <p><strong>Tell me who you need to reach, and why.</strong> A person, a firm, a kind of counterparty — I ask if I need more.</p>
+        <p><strong>Tell me who you need to reach, and why.</strong> A person, a firm, a kind of counterparty. I'll ask if I need more.</p>
       </div>
       <div class="step">
         <span class="n">02</span>
@@ -160,19 +180,28 @@
 
     <div class="closer">
       <h2>Message me now.</h2>
+      <p>Tell me who you need to reach and why. I'll take it from there.</p>
       <div class="ctas">
-        <a class="btn btn-primary" href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">
+        <a class="btn btn-cream" href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">
           Message on Telegram →
-        </a>
-        <a class="btn btn-secondary" href="https://www.linkedin.com/company/tradersguild" target="_blank" rel="noopener">
-          Connect on LinkedIn →
         </a>
       </div>
     </div>
   </main>
 
   <footer>
-    Traders Guild · <a href="https://tradersguild.global" target="_blank" rel="noopener">tradersguild.global</a>
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <div class="foot-mark">N</div>
+        <div class="foot-name">Traders Guild Nexus</div>
+      </div>
+      <nav class="foot-nav">
+        <a href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://www.linkedin.com/company/tradersguild" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://tradersguild.global" target="_blank" rel="noopener">tradersguild.global</a>
+      </nav>
+      <div class="foot-copy">© 2026 Traders Guild</div>
+    </div>
   </footer>
 </body>
 </html>
