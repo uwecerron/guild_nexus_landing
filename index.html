@@ -41,7 +41,7 @@
   },
   "sameAs": [
     "https://t.me/tradersguildnexus_bot",
-    "https://www.linkedin.com/company/tradersguild"
+    "https://www.linkedin.com/company/traders-guild"
   ]
 }
 </script>
@@ -208,6 +208,24 @@
   }
   .bubble:last-child { margin-bottom: 0; }
   .caption { font-size: .82rem; color: var(--muted); font-style: italic; margin: 14px 0 72px; }
+  .agent-intro { margin-bottom: 22px; }
+  .promptbox { position: relative; background: var(--ink); border-radius: 18px; }
+  .promptbox pre {
+    margin: 0; padding: 26px 28px; overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace; font-size: .82rem; line-height: 1.75;
+    color: var(--cream); white-space: pre-wrap; word-break: break-word;
+  }
+  .copybtn {
+    position: absolute; top: 14px; right: 14px; cursor: pointer;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--cream);
+    background: rgba(247,243,236,.12); border: 0; border-radius: 8px; padding: 7px 12px;
+  }
+  .copybtn:hover { background: var(--terra); }
+  .caption code {
+    font-family: 'JetBrains Mono', monospace; font-size: .78rem;
+    background: rgba(27,27,31,.07); border-radius: 5px; padding: 2px 6px; font-style: normal;
+  }
 
   h2.kicker {
     font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .1em;
@@ -272,7 +290,7 @@
       <a class="btn btn-primary" data-pixel="hero_telegram" href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">
         Message on Telegram →
       </a>
-      <a class="btn btn-secondary" data-pixel="hero_linkedin" href="https://www.linkedin.com/company/tradersguild" target="_blank" rel="noopener">
+      <a class="btn btn-secondary" data-pixel="hero_linkedin" href="https://www.linkedin.com/company/traders-guild" target="_blank" rel="noopener">
         Connect on LinkedIn →
       </a>
     </div>
@@ -309,6 +327,34 @@
       </div>
     </div>
 
+    <h2 class="kicker">Using me from inside your AI</h2>
+    <p class="sub agent-intro">
+      Work through Claude, ChatGPT, Hermes, OpenClaw, or your own agent? You
+      don't need to come here at all. Paste this and your assistant reaches me
+      directly.
+    </p>
+    <div class="showcase">
+      <div class="promptbox">
+        <button class="copybtn" type="button" data-copy="agent-prompt">Copy</button>
+        <pre id="agent-prompt">Use the Traders Guild Nexus MCP server to find me a path to
+[COMPANY OR ROLE]. Its endpoint is
+https://api.tradersguild.global/mcp and its docs are at
+https://api.tradersguild.global/llms.txt
+
+First call get_score to see whether the network has real
+coverage there. If it does, call apply_for_vetting to get a
+free token, then request the introduction and report back
+what it says. Every intro is double opt-in, so tell me if it
+needs my consent for anything.</pre>
+      </div>
+    </div>
+    <p class="caption">
+      Works in any client that speaks MCP. For a raw HTTP agent, point it at
+      <code>/.well-known/agent-card.json</code> or <code>/llms.txt</code> and it
+      will find the rest. Vetted agents get 300 calls and one introduction a
+      month, free, reviewed by a person.
+    </p>
+
     <div class="closer">
       <h2>Message me now.</h2>
       <p>Tell me who you need to reach and why. I'll take it from there.</p>
@@ -328,7 +374,7 @@
       </div>
       <nav class="foot-nav">
         <a data-pixel="footer_telegram" href="https://t.me/tradersguildnexus_bot" target="_blank" rel="noopener">Telegram</a>
-        <a data-pixel="footer_linkedin" href="https://www.linkedin.com/company/tradersguild" target="_blank" rel="noopener">LinkedIn</a>
+        <a data-pixel="footer_linkedin" href="https://www.linkedin.com/company/traders-guild" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://tradersguild.global" target="_blank" rel="noopener">tradersguild.global</a>
       </nav>
       <div class="foot-copy">© 2026 Traders Guild</div>
@@ -348,6 +394,21 @@
       beacon("page_view", location.pathname);
       document.querySelectorAll("[data-pixel]").forEach(function (el) {
         el.addEventListener("click", function () { beacon("cta_click", el.getAttribute("data-pixel")); });
+      });
+
+      // Copy button on the agent prompt. Counts as a CTA click: someone
+      // copying this is a stronger intent signal than opening Telegram.
+      document.querySelectorAll(".copybtn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var el = document.getElementById(btn.getAttribute("data-copy"));
+          if (!el) return;
+          navigator.clipboard.writeText(el.innerText).then(function () {
+            var was = btn.textContent;
+            btn.textContent = "Copied";
+            setTimeout(function () { btn.textContent = was; }, 1600);
+            beacon("cta_click", "agent_prompt_copy");
+          }).catch(function () { btn.textContent = "Select and copy"; });
+        });
       });
     })();
   </script>
