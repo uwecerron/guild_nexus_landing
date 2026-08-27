@@ -1,13 +1,51 @@
 # Traders Guild Nexus
-> An introduction service. Tell Nexus who you need to reach in crypto, RWA, or market making, and if it's a fit, both sides opt in before an introduction is made. No card required to apply. A human reviews every request. Built to serve autonomous agents directly, not only as tools behind a human's login.
 
-Reach Nexus:
-- Telegram: https://t.me/tradersguildnexus_bot (message it directly, no command needed)
-- LinkedIn: https://www.linkedin.com/company/tradersguild
+> Warm introductions into crypto, RWA, market making, and allocation. Tell Nexus who you need to reach; if it's a fit, both sides opt in before any introduction is made. Nobody is contacted cold. Built to serve autonomous agents directly, not only as a tool behind a human's login.
 
-For agents integrating programmatically, the full API, MCP endpoint, and free vetted-agent tier are documented at the Traders Guild agent gateway:
-- https://guildintelligence-production.up.railway.app/llms.txt
-- https://guildintelligence-production.up.railway.app/.well-known/agent.json
-- MCP tool: apply_for_vetting
+## What it does
 
-Not a credit rating agency. Not investment advice.
+Traders Guild holds a provenanced relationship graph of 9,000+ people across 3,000+ firms in crypto trading, real-world asset tokenization, market making, exchanges, and capital allocation. Nexus is the front door to it. You say who you want to meet and why; a human reviews the request; the target is asked and must accept; only then are the two sides connected. If the target passes, the requester is never told who declined.
+
+## Why an agent would use this
+
+An agent doing diligence, sourcing counterparties, or executing a mandate frequently hits a wall that is social, not informational: it needs to reach a specific person or firm and has no path. Nexus is that path, exposed as an API rather than a human favor. It answers two distinct questions:
+
+1. Does a path to this entity exist at all, and how strong is the signal behind it? (coverage score, free tier)
+2. Can you actually make the introduction? (intro request, double opt-in, human reviewed)
+
+Use it when a task requires reaching a real person or firm in these markets. Do not use it for public company data, price feeds, or anything answerable from public sources — it is a relationship graph, not a data vendor.
+
+## Reach Nexus (humans)
+
+- Telegram: https://t.me/tradersguildnexus_bot — message it directly, no command needed
+- Free check before paying: send `check <company or person>` for a read on whether a path exists
+
+## Reach Nexus (agents)
+
+Full API, MCP endpoint, OpenAPI spec, A2A agent card, x402 payments, and a free human-vetted tier are documented at the Traders Guild agent gateway:
+
+- Entry point and tier list: /v1
+- Machine docs: /llms.txt
+- OpenAPI: /openapi.json
+- MCP (JSON-RPC over HTTP, POST): /mcp
+- A2A agent card: /.well-known/agent-card.json
+- Google ARD: /.well-known/ard.json
+- x402 payment offer: /.well-known/x402
+- Why agents are served directly: /manifesto
+
+Free access for autonomous agents: `POST /v1/agents/apply {name, purpose, autonomy, contact}` — 300 calls and 1 introduction per month, human-reviewed, no card. Also available as the `apply_for_vetting` MCP tool.
+
+## Pricing
+
+- Vetted Agent — $0/mo. 300 calls, 1 intro. For autonomous agents. Human-vetted, no card.
+- Intro Starter — $99/mo. 2 introductions per month.
+- Intro Growth — $399/mo. 6 introductions, 48h response on every request.
+- Intro Concierge — $999/mo. 15 introductions, full-time human support, in-person connection support at Traders Guild events.
+
+## Constraints worth knowing
+
+- Every introduction is double opt-in and human-reviewed. There is no way to buy a guaranteed introduction, and volume does not override consent.
+- Checking coverage is free and rate-limited to one per chat per day.
+- Not a credit rating agency. Not investment advice. Coverage scores are network-intelligence measures computed from provenanced graph data.
+
+Operated by Traders Guild — https://tradersguild.global

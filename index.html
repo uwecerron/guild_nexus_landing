@@ -58,18 +58,76 @@
     {
       "@type": "Question",
       "name": "Does it cost anything to apply?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. There is no card and no subscription required to apply. A person reviews every request." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Checking is free. Message Nexus the word check followed by a company or person and it will tell you whether a path into that network exists, with no card and no signup. Working an actual introduction request requires a subscription starting at $99 per month, which is what keeps requests real rather than spam." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does Traders Guild Nexus cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Three tiers. Intro Starter is $99 per month for 2 introductions per month. Intro Growth is $399 per month for 6 introductions with a 48 hour response on every request. Intro Concierge is $999 per month for 15 introductions with full-time human support and in-person connection support at Traders Guild events. Autonomous AI agents can apply for a free human-vetted tier with 300 API calls and 1 introduction per month at no charge." }
     },
     {
       "@type": "Question",
       "name": "How do I reach Nexus?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Message the Telegram bot at t.me/tradersguildnexus_bot, or connect on LinkedIn. No command is required; just say who you need to reach and why." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Message the Telegram bot at t.me/tradersguildnexus_bot. No command is required; just say who you need to reach and why. To test the network first, send check followed by a company name." }
     },
     {
       "@type": "Question",
       "name": "Can autonomous AI agents use Nexus?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Nexus is built for agents acting on their own initiative, not only as tools behind a human's login. Agents can also apply programmatically via the Traders Guild agent API's /v1/agents/apply endpoint or the apply_for_vetting MCP tool." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Nexus is built for agents acting on their own initiative, not only as tools behind a human's login. Agents can apply programmatically via the Traders Guild agent API at POST /v1/agents/apply, or call the apply_for_vetting MCP tool. There is a Model Context Protocol endpoint, an OpenAPI specification, an A2A agent card, and x402 payment support, so an agent can discover, evaluate, pay for, and use the service without a human in the loop." }
+    },
+    {
+      "@type": "Question",
+      "name": "How is Nexus different from cold outreach or LinkedIn?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nobody is contacted cold. Every introduction is double opt-in: a human reviews the request first, then the target is asked and must accept before either side learns who the other is. If the target passes, the requester is never told who declined." }
+    },
+    {
+      "@type": "Question",
+      "name": "What kind of people and firms are in the Traders Guild network?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Over 9,000 people across more than 3,000 firms, concentrated in crypto trading, real-world asset tokenization, market making, exchanges, and capital allocation." }
     }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Traders Guild Nexus warm introductions",
+  "serviceType": "Professional network introduction service",
+  "description": "Double opt-in warm introductions into a network of 9,000+ people and 3,000+ firms across crypto, real-world assets, market making, and allocation. Available to humans over Telegram and to autonomous AI agents over an API, MCP endpoint, and x402 payments.",
+  "provider": { "@type": "Organization", "name": "Traders Guild", "url": "https://tradersguild.global" },
+  "areaServed": "Worldwide",
+  "audience": { "@type": "Audience", "audienceType": "Crypto funds, market makers, RWA issuers, exchanges, allocators, and autonomous AI agents" },
+  "offers": [
+    { "@type": "Offer", "name": "Intro Starter", "price": "99", "priceCurrency": "USD",
+      "description": "2 introductions per month",
+      "priceSpecification": { "@type": "UnitPriceSpecification", "price": "99", "priceCurrency": "USD", "billingDuration": 1, "billingIncrement": 1, "unitCode": "MON" } },
+    { "@type": "Offer", "name": "Intro Growth", "price": "399", "priceCurrency": "USD",
+      "description": "6 introductions per month, 48 hour response on every request",
+      "priceSpecification": { "@type": "UnitPriceSpecification", "price": "399", "priceCurrency": "USD", "billingDuration": 1, "billingIncrement": 1, "unitCode": "MON" } },
+    { "@type": "Offer", "name": "Intro Concierge", "price": "999", "priceCurrency": "USD",
+      "description": "15 introductions per month, full-time human support, in-person connection support at Traders Guild events",
+      "priceSpecification": { "@type": "UnitPriceSpecification", "price": "999", "priceCurrency": "USD", "billingDuration": 1, "billingIncrement": 1, "unitCode": "MON" } },
+    { "@type": "Offer", "name": "Vetted Agent", "price": "0", "priceCurrency": "USD",
+      "description": "Free human-vetted tier for autonomous AI agents: 300 API calls and 1 introduction per month, no card required" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to get a warm introduction through Traders Guild Nexus",
+  "description": "Getting an introduction into the Traders Guild network, from first check to connection.",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Check for free",
+      "text": "Message the Nexus Telegram bot with the word check followed by a company or person. It replies with whether the network has a path there. No card, no signup." },
+    { "@type": "HowToStep", "position": 2, "name": "Say who you need to reach",
+      "text": "Tell Nexus who you want to meet and why, in plain language. No command syntax required." },
+    { "@type": "HowToStep", "position": 3, "name": "A human reviews it",
+      "text": "Every request is read by a person before anything moves. Requests that do not fit are declined rather than forwarded." },
+    { "@type": "HowToStep", "position": 4, "name": "Both sides opt in",
+      "text": "The target is asked and must accept. Only then are the two sides connected. If they pass, the requester is never told who declined." }
   ]
 }
 </script>

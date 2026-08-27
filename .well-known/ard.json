@@ -1,0 +1,46 @@
+{
+  "version": "0.1",
+  "provider": {
+    "name": "Traders Guild",
+    "url": "https://tradersguild.global"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:tradersguild.global:service:nexus",
+      "displayName": "Traders Guild Nexus",
+      "type": "application/mcp-server+json",
+      "url": "https://api.tradersguild.global/mcp",
+      "description": "Warm introductions into crypto, RWA, market making, and allocation, plus network-intelligence coverage scores. Every introduction is double opt-in: a human reviews the request and the target consents before either side learns who the other is. Free human-vetted tier for autonomous agents; paid tiers from $99/mo.",
+      "capabilities": [
+        "introductions",
+        "network-intelligence",
+        "company-signal",
+        "graph-query",
+        "counterparty-sourcing"
+      ],
+      "representativeQueries": [
+        "find me an introduction to a crypto market maker",
+        "who can introduce me to an RWA tokenization desk",
+        "get me a warm intro to an allocator in digital assets",
+        "check whether there is a path to someone at this crypto firm",
+        "what does the network know about this trading counterparty"
+      ],
+      "interfaces": [
+        { "type": "application/mcp-server+json", "url": "https://api.tradersguild.global/mcp" },
+        { "type": "application/openapi+json", "url": "https://api.tradersguild.global/openapi.json" },
+        { "type": "text/llms.txt", "url": "https://api.tradersguild.global/llms.txt" }
+      ],
+      "pricing": {
+        "model": "subscription",
+        "free_tier": true,
+        "free_tier_note": "vetted_agent: 300 calls + 1 introduction per month, human-reviewed, no card. POST /v1/agents/apply",
+        "paid_from_usd_month": 99
+      },
+      "authentication": {
+        "type": "bearer",
+        "obtain": "https://api.tradersguild.global/v1/subscribe"
+      },
+      "humanInterface": "https://t.me/tradersguildnexus_bot"
+    }
+  ]
+}
