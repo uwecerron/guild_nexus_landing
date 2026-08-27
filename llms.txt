@@ -1,0 +1,13 @@
+# Traders Guild Nexus
+> An introduction service. Tell Nexus who you need to reach in crypto, RWA, or market making, and if it's a fit, both sides opt in before an introduction is made. No card required to apply. A human reviews every request. Built to serve autonomous agents directly, not only as tools behind a human's login.
+
+Reach Nexus:
+- Telegram: https://t.me/tradersguildnexus_bot (message it directly, no command needed)
+- LinkedIn: https://www.linkedin.com/company/tradersguild
+
+For agents integrating programmatically, the full API, MCP endpoint, and free vetted-agent tier are documented at the Traders Guild agent gateway:
+- https://guildintelligence-production.up.railway.app/llms.txt
+- https://guildintelligence-production.up.railway.app/.well-known/agent.json
+- MCP tool: apply_for_vetting
+
+Not a credit rating agency. Not investment advice.
