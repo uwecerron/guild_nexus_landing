@@ -7,7 +7,7 @@ async function configureRuntime(){
  $('prepare').disabled=!aiAvailable;
  $('runtime-status').textContent=aiAvailable?'Drafted on this Mac · Review before using':'Online preview · AI drafting is not connected';
  if(!aiAvailable){$('prepare').textContent='AI drafting unavailable';$('manual').textContent='Create a follow-up';$('manual').classList.add('primary');}
- else $('runtime-detail').textContent='AI drafts are prepared by the model on this Mac. No sign-in or cloud sync. Notes stay in this browser unless exported. Messages and notifications are not sent.';
+ else $('runtime-detail').textContent='AI drafts are prepared by the model on this Mac. Account sign-in is available; workspace notes do not sync. Notes stay in this browser unless exported. Messages and notifications are not sent.';
 }
 configureRuntime();
 function message(s){$('notice').textContent=s;}

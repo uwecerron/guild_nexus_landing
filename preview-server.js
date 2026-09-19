@@ -12,6 +12,7 @@ const schema={type:'object',properties:{summary:{type:'string'},title:{type:'str
 const server=http.createServer(async(req,res)=>{
   if(req.headers.host!==`127.0.0.1:${PORT}` && req.headers.host!==`localhost:${PORT}`) return json(res,403,{error:'Invalid host.'});
   const url=new URL(req.url,origin);
+  if(['/account','/account.html'].includes(url.pathname) && req.method==='GET') { res.writeHead(302,{Location:'https://nexus.tradersguild.global/account'}); return res.end(); }
   if(url.pathname==='/runtime.json' && req.method==='GET') return json(res,200,{aiAvailable:true,mode:'local'});
   if(url.pathname==='/api/prepare') {
     if(req.method!=='POST') return json(res,405,{error:'Use POST.'});

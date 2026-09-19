@@ -16,3 +16,8 @@ Not deployable as static-only AI functionality: preview-server.js and a reachabl
 ## Hosted preview and authentication
 
 Vercel publishes only the explicit build output. Hosted runtime.json disables AI drafting; the local server overrides that route to enable the local model. The hosted preview has no user authentication, cloud storage, or shared data. Browser saving is not account security. Production AI and data sync require an identity provider, server-side session verification, per-user storage authorization, model credentials, quotas, and revocation. No fake login is displayed.
+
+
+## Accounts
+
+`/account` provides Nexus username/password sign-in through the Railway backend, proxied at `/nexus-api/*`. Account sessions use secure HTTP-only cookies. Notes in the workspace remain browser-local; sign-in does not sync or isolate them. Social authorization routes require provider configuration; no inbox sync or sending is operational. See backend `NEXUS_AUTH.md` for exact environment names and callbacks. Local preview redirects Account & connections to the production HTTPS account page.

@@ -31,5 +31,11 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/nexus-api/:path*",
+      "destination": "https://guildintelligence-production.up.railway.app/nexus/:path*"
+    }
   ]
 }
