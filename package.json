@@ -1,0 +1,10 @@
+{
+  "name": "guild-nexus-preview",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "node build.js",
+    "start": "node preview-server.js",
+    "test": "node --test tests/proposal.test.js tests/workspace.test.js"
+  }
+}
