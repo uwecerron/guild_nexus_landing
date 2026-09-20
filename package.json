@@ -5,6 +5,6 @@
   "scripts": {
     "build": "node build.js",
     "start": "node preview-server.js",
-    "test": "node --test tests/proposal.test.js tests/workspace.test.js"
+    "test": "node --test tests/proposal.test.js tests/workspace.test.js tests/account.test.js tests/dashboard.test.js"
   }
 }
