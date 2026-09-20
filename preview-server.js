@@ -5,7 +5,7 @@ const path = require('node:path');
 const {validateProposal} = require('./proposal.js');
 const PORT = Number(process.env.PORT || 8791);
 const origin = `http://127.0.0.1:${PORT}`;
-const files = new Map([['/','index.html'],['/index.html','index.html'],['/app','app.html'],['/app.html','app.html'],['/dashboard.css','dashboard.css'],['/dashboard.js','dashboard.js'],['/nexus.css','nexus.css'],['/workspace.js','workspace.js'],['/llms.txt','llms.txt']]);
+const files = new Map([['/','index.html'],['/index.html','index.html'],['/app','app.html'],['/app.html','app.html'],['/dashboard.css','dashboard.css'],['/dashboard.js','dashboard.js'],['/routines.js','routines.js'],['/nexus.css','nexus.css'],['/workspace.js','workspace.js'],['/llms.txt','llms.txt']]);
 let busy = false;
 function json(res,code,data) {res.writeHead(code,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(JSON.stringify(data));}
 const schema={type:'object',properties:{summary:{type:'string'},title:{type:'string'},person:{type:'string'},due:{type:'string'},draft:{type:'string'},evidence:{type:'string'},questions:{type:'array',items:{type:'string'}}},required:['summary','title','person','due','draft','evidence','questions'],additionalProperties:false};
