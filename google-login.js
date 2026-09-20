@@ -1,0 +1,8 @@
+'use strict';
+(()=>{
+ const button=document.getElementById('google-signin'),status=document.getElementById('google-status');
+ async function options(){try{const r=await fetch('/nexus-api/login/options',{credentials:'same-origin',cache:'no-store',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error();const d=await r.json();button.disabled=!d.google;status.textContent=d.google?'One account for sign-up and sign-in. No inbox access requested.':'Google sign-in is being set up. Use a Nexus username below for now.';if(!d.google)document.getElementById('password-access').open=true;}catch{status.textContent='Could not check Google sign-in. Reload to retry, or use your Nexus username.';document.getElementById('password-access').open=true;}}
+ button.addEventListener('click',async()=>{button.disabled=true;button.textContent='Opening Google…';try{const r=await fetch('/nexus-api/login/google/start',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:'{}',signal:AbortSignal.timeout(15000)});const d=await r.json();if(!r.ok)throw Error(d.error||'Google sign-in could not start.');const url=new URL(d.url);if(url.origin!=='https://accounts.google.com')throw Error('Unexpected sign-in address. Please try again.');location.assign(url.href);}catch(e){status.textContent=e.message;button.disabled=false;button.textContent='Continue with Google';}});
+ if(new URLSearchParams(location.search).get('login')==='failed'){document.getElementById('account-notice').textContent='Google sign-in wasn’t completed. Try again or use your Nexus username.';const p=document.createElement('p');p.className='field-help';p.textContent='Your last Google sign-in did not complete. You can safely try again.';button.after(p);}
+ options();
+})();
