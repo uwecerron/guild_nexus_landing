@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "mode": "proposal",
+  "workspace": "example-crm-workspace",
+  "request": "Create a task to send the deck promised in the meeting. Do not send a message.",
+  "evidence": [{"id":"meeting-1","source":"User-provided meeting notes, 2026-09-22","excerpt":"I will send Maya the deck."}],
+  "actions": [{
+    "key":"meeting-1-send-deck",
+    "operation":"create_task",
+    "target":{"object":"contact","id":"example-contact-123","resolved":true},
+    "fields":{"title":"Send Maya the deck"},
+    "evidence_ids":["meeting-1"],
+    "dedupe_query":"Check this contact's open tasks for the same meeting and deck commitment."
+  }]
+}

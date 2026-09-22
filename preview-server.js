@@ -7,6 +7,9 @@ const PORT = Number(process.env.PORT || 8791);
 const origin = `http://127.0.0.1:${PORT}`;
 const files = new Map([['/','index.html'],['/index.html','index.html'],['/app','app.html'],['/app.html','app.html'],['/dashboard.css','dashboard.css'],['/dashboard.js','dashboard.js'],['/routines.js','routines.js'],['/nexus.css','nexus.css'],['/workspace.js','workspace.js'],['/llms.txt','llms.txt']]);
 let busy = false;
+files.set('/skills', 'skills.html');
+files.set('/skills.html', 'skills.html');
+for (const file of ['catalog.json','harness.md','validate-plan.js','example-plan.json','crm-follow-up/SKILL.md','crm-meeting-notes/SKILL.md','crm-pipeline-review/SKILL.md']) files.set('/skills/' + file, 'skills/' + file);
 function json(res,code,data) {res.writeHead(code,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(JSON.stringify(data));}
 const schema={type:'object',properties:{summary:{type:'string'},title:{type:'string'},person:{type:'string'},due:{type:'string'},draft:{type:'string'},evidence:{type:'string'},questions:{type:'array',items:{type:'string'}}},required:['summary','title','person','due','draft','evidence','questions'],additionalProperties:false};
 const server=http.createServer(async(req,res)=>{

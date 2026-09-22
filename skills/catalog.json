@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "title": "Nexus CRM skills",
+  "skills": [
+    {"name":"crm-follow-up","title":"Prepare a follow-up","path":"/skills/crm-follow-up/SKILL.md"},
+    {"name":"crm-meeting-notes","title":"Capture meeting outcomes","path":"/skills/crm-meeting-notes/SKILL.md"},
+    {"name":"crm-pipeline-review","title":"Review your pipeline","path":"/skills/crm-pipeline-review/SKILL.md"}
+  ],
+  "execution": "Uses the user's own authenticated CRM tools. This catalog provides instructions, not credentials, integrations, or an execution service.",
+  "harness": "/skills/harness.md"
+}
